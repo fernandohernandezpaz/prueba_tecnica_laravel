@@ -21,8 +21,13 @@ Route::group([
     Route::post('login', [AuthController::class, 'login'])->name('login');
 });
 
+$middlewares = 'auth:sanctum';
 Route::resource(
     'calendar_days_disabled',
     CalendarDaysDisabledController::class
-)->only(['index'])->middleware('auth:sanctum');
+)->only(['index'])->middleware($middlewares);
 
+Route::resource(
+    'calendar/user/days/reservations',
+    ReservationController::class
+)->only(['index'])->middleware($middlewares);
