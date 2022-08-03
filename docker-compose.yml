@@ -1,0 +1,52 @@
+version: '3.7'
+services:
+  amoba_db:
+    container_name: amoba_db
+    image: postgres:11.13-alpine3.14
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - amobadev
+
+  amoba_app:
+    container_name: amoba_app
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    ports:
+      - "9000:8000"
+    volumes:
+      - .:/var/www/html
+      - ./public:/var/www/html/public
+    depends_on:
+      - amoba_db
+      - amoba_nginx
+    networks:
+      - amobadev
+
+  amoba_nginx:
+    image: nginx:alpine
+    container_name: amoba_nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+    volumes:
+      - ./public/:/var/www/html/public
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - amobadev
+
+volumes:
+  amobavol:
+    driver: local
+
+networks:
+  amobadev:
+    driver: bridge
