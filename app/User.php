@@ -37,4 +37,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    const CREATED_AT = 'created';
+    const UPDATED_AT = 'modified';
 }

@@ -14,13 +14,33 @@ class CreateUsersTable extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->bigInteger('id')->primary();
+            $table->string('password')->nullable();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->dateTime('last_online')->nullable();
+            $table->string('first_name');
+            $table->string('last_name')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('picture')->nullable();
+            $table->string('verification_code')->nullable();
+            $table->string('new_email')->nullable();
+            $table->integer('status');
+            $table->integer('first');
+            $table->date('last_accept_date')->nullable();
+            $table->string('company_contact')->nullable();
+            $table->decimal('credits', 10, 2)->nullable();
+            $table->integer('first_trip');
+            $table->smallInteger('phone_verify');
+            $table->integer('incomplete_profile');
+            $table->bigInteger('language_id')->nullable();
+            $table->string('token_auto_login')->nullable();
+            $table->dateTime('email_verified_at')->nullable();
+            $table->string('user_vertical')->nullable();
+            $table->integer('no_registered');
+            $table->timestamp('created')->nullable();
+            $table->timestamp('modified')->nullable();
+            $table->softDeletes();
         });
     }
 
