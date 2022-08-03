@@ -9,9 +9,15 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
          $this->call(UsersSeeder::class);
          $this->call(CalendarSeeder::class);
+         $this->call(RoutesSeeder::class);
+         $this->call(RouteDataSeeder::class);
+         $this->call(UserPlansSeeder::class);
+         $this->call(ServicesSeeder::class);
+         $this->call(CalendarDaysDisabledSeeder::class);
+         $this->call(ReservationsSeeder::class);
     }
 }
