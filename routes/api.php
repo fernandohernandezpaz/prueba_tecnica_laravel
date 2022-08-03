@@ -21,4 +21,8 @@ Route::group([
     Route::post('login', [AuthController::class, 'login'])->name('login');
 });
 
+Route::resource(
+    'calendar_days_disabled',
+    CalendarDaysDisabledController::class
+)->only(['index'])->middleware('auth:sanctum');
 
