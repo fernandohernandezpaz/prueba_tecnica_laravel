@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "c8c4b438-8bd6-41d0-9147-dea365b9db94",
+		"name": "Amoba APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5459513"
+	},
+	"item": [
+		{
+			"name": "Autenticación",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "nelson@amobasoftware.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "6f4e4540ed501075ba637eb97b06ccb4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}auth/login",
+					"host": [
+						"{{url}}auth"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -16,8 +16,9 @@ class UsersSeeder extends Seeder
         $usuarios = json_decode($usuariosJSON, true);
         $usuarios = $usuarios['users'];
         foreach ($usuarios as $usuario) {
-            $usuario['password'] = bcrypt($usuario['password']);
+            $usuarioNuevo = (array) $usuario;
+            $usuarioNuevo['password'] = bcrypt($usuarioNuevo['password']);
+            \App\User::insert($usuarioNuevo);
         }
-        \App\User::insert($usuarios);
     }
 }
