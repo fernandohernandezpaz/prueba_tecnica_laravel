@@ -97,6 +97,70 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Reservar  día",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "route_id",
+							"value": "56",
+							"type": "text"
+						},
+						{
+							"key": "user_plan_id",
+							"value": "52",
+							"type": "text"
+						},
+						{
+							"key": "route_stop_origin_id",
+							"value": "597",
+							"type": "text"
+						},
+						{
+							"key": "route_stop_destination_id",
+							"value": "600",
+							"type": "text"
+						},
+						{
+							"key": "reservation_start",
+							"value": "2022/08/02",
+							"type": "text"
+						},
+						{
+							"key": "reservation_end",
+							"value": "2022/08/03",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}calendar/user/days/reservations",
+					"host": [
+						"{{url}}calendar"
+					],
+					"path": [
+						"user",
+						"days",
+						"reservations"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

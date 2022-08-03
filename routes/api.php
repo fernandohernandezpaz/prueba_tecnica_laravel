@@ -30,4 +30,4 @@ Route::resource(
 Route::resource(
     'calendar/user/days/reservations',
     ReservationController::class
-)->only(['index'])->middleware($middlewares);
+)->only(['index', 'store'])->middleware($middlewares);

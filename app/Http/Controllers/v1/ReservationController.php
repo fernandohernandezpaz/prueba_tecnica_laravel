@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\v1\Reservations\StoreRequest;
 use App\Http\Resources\v1\ReservationCollection;
 use App\Models\Reservations;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class ReservationController extends Controller
 {
@@ -17,11 +16,11 @@ class ReservationController extends Controller
      *
      * @return JsonResponse
      */
-    public function index():JsonResponse
+    public function index(): JsonResponse
     {
         $user = auth()->user();
         $myReservations = Reservations::query()
-            ->whereHas('userPlans', function (Builder $q) use($user) {
+            ->whereHas('userPlans', function (Builder $q) use ($user) {
                 $q->where('user_id', $user->id);
             })->get();
         return response()->json(ReservationCollection::collection(
@@ -32,66 +31,19 @@ class ReservationController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return JsonResponse
      */
-    public function create()
+    public function store(StoreRequest $request): JsonResponse
     {
-        //
+        Reservations::create($request->only(
+            'route_id',
+            'user_plan_id',
+            'route_stop_origin_id',
+            'route_stop_destination_id',
+            'reservation_start',
+            'reservation_end'
+        ));
+        return response()->status(201)->json();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
