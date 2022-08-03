@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Reservations extends Model
 {
@@ -23,4 +24,14 @@ class Reservations extends Model
         'route_stop_origin_id'=>'integer',
         'route_stop_destination_id'=>'integer',
     ];
+
+    /*
+     |--------------------------------------------------------------------------
+     | RELATIONSHIPS
+     |--------------------------------------------------------------------------
+     */
+    public function userPlans(): BelongsTo
+    {
+        return $this->belongsTo(UserPlans::class,'user_plan_id');
+    }
 }

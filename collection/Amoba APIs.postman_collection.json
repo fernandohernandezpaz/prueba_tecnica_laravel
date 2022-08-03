@@ -61,6 +61,42 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Dias reservados  del usuario",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{url}}calendar/user/days/reservations",
+					"host": [
+						"{{url}}calendar"
+					],
+					"path": [
+						"user",
+						"days",
+						"reservations"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
