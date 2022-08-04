@@ -18,3 +18,20 @@ Requisito     |  Version
 PHP           | \>= 7.2.5
 Composer      | \>= 1.10.1
 Laravel       | \> 7.29
+Docker        | ----
+Postgres      | \>= 11.13
+
+<small>El proyecto fue desarrollado en sistema operativo de linux</small>
+
+# Para levantar proyecto
+### Paso 1:
+```
+docker-compose up
+```
+
+### Paso 2:
+#### Importar Amoba APIs.postman_collection.json en postman
+
+
+### Paso 3:
+#### Consumir api con nombre Autenticación
